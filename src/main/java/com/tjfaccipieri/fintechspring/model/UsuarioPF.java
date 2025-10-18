@@ -12,7 +12,7 @@ import org.hibernate.validator.constraints.br.CPF;
 public class UsuarioPF extends Usuario {
   @NotNull
   @CPF(message = "O CPF informado é inválido")
-  @Column(length = 11, nullable = false)
+  @Column(length = 11, nullable = false, unique = true)
   private String cpf;
   
   public String getCpf() {

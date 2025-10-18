@@ -22,8 +22,8 @@ public class UsuarioService {
   public Optional<Usuario> findById(Long id) {
     return repository.findById(id);
   }
-  
-  public Usuario updateUser(Usuario usuario) {
-    return repository.save(usuario);
-  }
+
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
 }
