@@ -1,0 +1,73 @@
+type: collection.insomnia.rest/5.0
+name: Fintech FIAP
+meta:
+  id: wrk_1565e1c88ebb4c5e83b3663a49e81d04
+  created: 1760800953581
+  modified: 1760800953581
+  description: ""
+collection:
+  - name: Usuarios
+    meta:
+      id: fld_c69fcf5cecbf4aefb268cdae20e67ddb
+      created: 1760800977548
+      modified: 1760800977548
+      sortKey: -1760800977548
+      description: ""
+    children:
+      - url: "{{ _.baseurl }}/usuarios"
+        name: GetAll
+        meta:
+          id: req_fc16325ade604a87872848408c25783b
+          created: 1760800980525
+          modified: 1760800995135
+          isPrivate: false
+          description: ""
+          sortKey: -1760800980525
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.baseurl }}/usuarios/2"
+        name: GetById
+        meta:
+          id: req_b080f80921a64c4c971195d8af1c7e82
+          created: 1760801005866
+          modified: 1760801008257
+          isPrivate: false
+          description: ""
+          sortKey: -1760407114784
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_e515198ce2454bbf763bdd9fea3f5fed373ddd4d
+    created: 1760800953585
+    modified: 1760800953585
+environments:
+  name: Base Environment
+  meta:
+    id: env_e515198ce2454bbf763bdd9fea3f5fed373ddd4d
+    created: 1760800953583
+    modified: 1760800969256
+    isPrivate: false
+  data:
+    baseurl: http://localhost:8080/api

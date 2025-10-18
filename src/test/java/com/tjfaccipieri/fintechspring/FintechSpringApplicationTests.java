@@ -1,0 +1,13 @@
+package com.tjfaccipieri.fintechspring;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class FintechSpringApplicationTests {
+  
+  @Test
+  void contextLoads() {
+  }
+  
+}
