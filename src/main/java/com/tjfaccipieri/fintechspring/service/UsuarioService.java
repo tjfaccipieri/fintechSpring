@@ -20,7 +20,11 @@ public class UsuarioService {
   }
   
   public Optional<Usuario> findById(Long id) {
-    return repository.findById(id);
+    Optional<Usuario> usuario = repository.findById(id);
+    if (usuario.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
+    }
+    return usuario;
   }
 
 	public void deleteById(Long id) {

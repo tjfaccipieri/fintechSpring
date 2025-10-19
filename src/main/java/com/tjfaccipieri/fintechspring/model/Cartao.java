@@ -1,5 +1,8 @@
 package com.tjfaccipieri.fintechspring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -26,9 +29,11 @@ public class Cartao {
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name="id_conta", nullable = false)
+  @JsonBackReference
   private Conta conta;
   
   @OneToMany(mappedBy = "cartao", cascade = CascadeType.ALL)
+  @JsonManagedReference("cartao-transacao")
   private List<Transacao> transacoes;
   
   public Long getId() {

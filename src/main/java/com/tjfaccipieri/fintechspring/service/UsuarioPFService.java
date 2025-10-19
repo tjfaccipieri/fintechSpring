@@ -3,12 +3,13 @@ package com.tjfaccipieri.fintechspring.service;
 import com.tjfaccipieri.fintechspring.model.UsuarioPF;
 import com.tjfaccipieri.fintechspring.repository.UsuarioPFRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class UsuarioPFService {
@@ -30,7 +31,7 @@ public class UsuarioPFService {
 	public UsuarioPF update(UsuarioPF usuarioPF) {
 		Optional<UsuarioPF> user = findById(usuarioPF.getId());
 		if (user.isEmpty()) {
-			return null;
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
 		}
 
 		if (repository.existsByCpf(usuarioPF.getCpf()) && !user.get().getId().equals(usuarioPF.getId())) {
@@ -39,4 +40,12 @@ public class UsuarioPFService {
 
 		return repository.save(usuarioPF);
 	}
+  
+  public Optional<UsuarioPF> login(UsuarioPF usuario) {
+    Optional<UsuarioPF> user = repository.findByEmail(usuario.getEmail());
+    if (user.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
+    }
+    return user;
+  }
 }

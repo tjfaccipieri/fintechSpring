@@ -1,5 +1,7 @@
 package com.tjfaccipieri.fintechspring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -22,9 +24,11 @@ public class Conta {
   private Usuario usuario;
   
   @OneToMany(mappedBy = "conta", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference("conta-cartao")
   private List<Cartao> cartoes;
   
   @OneToMany(mappedBy = "conta",  cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference("conta-transacao")
   private List<Transacao> transacoes;
   
   public Long getId() {

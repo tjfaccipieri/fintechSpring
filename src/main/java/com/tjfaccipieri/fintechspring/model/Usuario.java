@@ -1,6 +1,8 @@
 package com.tjfaccipieri.fintechspring.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -22,8 +24,16 @@ public abstract class Usuario {
   @Column(length = 1500)
   private String foto;
   
-  @OneToOne(mappedBy = "usuario",cascade = CascadeType.ALL)
-  private Autenticacao autenticacao;
+  @NotNull
+  @Size(max = 60)
+  @Email
+  @Column(length = 60, nullable = false, unique = true)
+  private String email;
+  
+  @NotNull
+  @Size(min = 8,max = 50)
+  @Column(length = 50, nullable = false)
+  private String senha;
   
   public Long getId() {
     return id;
@@ -49,11 +59,19 @@ public abstract class Usuario {
     this.foto = foto;
   }
   
-  public Autenticacao getAutenticacao() {
-    return autenticacao;
+  public String getEmail() {
+    return email;
   }
   
-  public void setAutenticacao(Autenticacao autenticacao) {
-    this.autenticacao = autenticacao;
+  public void setEmail(String email) {
+    this.email = email;
+  }
+  
+  public String getSenha() {
+    return senha;
+  }
+  
+  public void setSenha(String senha) {
+    this.senha = senha;
   }
 }
