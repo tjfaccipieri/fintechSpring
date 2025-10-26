@@ -1,5 +1,6 @@
 package com.tjfaccipieri.fintechspring.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -19,6 +20,7 @@ public class Categoria {
   private String nome;
   
   @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+  @JsonManagedReference("categoria-transacao")
   private List<Transacao> transacoes;
   
   public Long getId() {

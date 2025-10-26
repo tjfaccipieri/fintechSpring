@@ -8,7 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "tb_transacao")
@@ -35,9 +35,10 @@ public class Transacao {
   
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_categoria", nullable = false)
+  @JsonBackReference("categoria-transacao")
   private Categoria categoria;
   
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "id_cartao")
   @JsonBackReference("cartao-transacao")
   private Cartao cartao;

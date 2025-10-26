@@ -17,7 +17,12 @@ public class UsuarioPFService {
 	private UsuarioPFRepository repository;
 
 	public Optional<UsuarioPF> findById(Long id) {
-		return repository.findById(id);
+		Optional<UsuarioPF> user =  repository.findById(id);
+    if (user.isEmpty()) {
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
+    }
+    
+    return user;
 	}
 
 	public UsuarioPF create(UsuarioPF usuarioPF) {
@@ -30,22 +35,11 @@ public class UsuarioPFService {
 
 	public UsuarioPF update(UsuarioPF usuarioPF) {
 		Optional<UsuarioPF> user = findById(usuarioPF.getId());
-		if (user.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
-		}
-
+		
 		if (repository.existsByCpf(usuarioPF.getCpf()) && !user.get().getId().equals(usuarioPF.getId())) {
-			throw new DataIntegrityViolationException("CPF já cadastrado com outro usuário");
+			throw new DataIntegrityViolationException("CPF já cadastrado.");
 		}
 
 		return repository.save(usuarioPF);
 	}
-  
-  public Optional<UsuarioPF> login(UsuarioPF usuario) {
-    Optional<UsuarioPF> user = repository.findByEmail(usuario.getEmail());
-    if (user.isEmpty()) {
-      throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado.", null);
-    }
-    return user;
-  }
 }

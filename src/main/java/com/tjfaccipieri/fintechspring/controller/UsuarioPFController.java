@@ -24,11 +24,6 @@ public class UsuarioPFController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(service.create(usuarioPF));
 	}
   
-  @PostMapping("/login")
-  public ResponseEntity<Optional<UsuarioPF>> login(@RequestBody UsuarioPF usuario) {
-    return ResponseEntity.ok(service.login(usuario));
-  }
-  
   @PutMapping()
   public ResponseEntity<UsuarioPF> update(@RequestBody UsuarioPF usuarioPF) {
     return ResponseEntity.status(HttpStatus.OK).body(service.update(usuarioPF));

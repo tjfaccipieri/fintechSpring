@@ -1,5 +1,6 @@
 package com.tjfaccipieri.fintechspring.controller;
 
+import com.tjfaccipieri.fintechspring.dto.categoria.CategoriaCreateDTO;
 import com.tjfaccipieri.fintechspring.model.Categoria;
 import com.tjfaccipieri.fintechspring.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class CategoriaController {
   }
   
   @PostMapping()
-  public ResponseEntity<Categoria> create(@RequestBody Categoria categoria) {
-    return ResponseEntity.status(HttpStatus.CREATED).body(service.create(categoria));
+  public ResponseEntity<Categoria> create(@RequestBody CategoriaCreateDTO categoriaCreateDTO) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(service.create(categoriaCreateDTO));
   }
   
   @PutMapping()

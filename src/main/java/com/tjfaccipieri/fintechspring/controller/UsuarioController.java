@@ -1,5 +1,7 @@
 package com.tjfaccipieri.fintechspring.controller;
 
+import com.tjfaccipieri.fintechspring.dto.usuario.AutenticacaoDTO;
+import com.tjfaccipieri.fintechspring.dto.usuario.LoginResponseDTO;
 import com.tjfaccipieri.fintechspring.model.Usuario;
 import com.tjfaccipieri.fintechspring.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +40,10 @@ public class UsuarioController {
 		}
 		service.deleteById(id);
 	}
+
+  @PostMapping("/login")
+  public ResponseEntity<LoginResponseDTO> login(@RequestBody AutenticacaoDTO autenticacaoDTO) {
+    LoginResponseDTO loginResponse = service.login(autenticacaoDTO.email(), autenticacaoDTO.senha());
+    return ResponseEntity.ok(loginResponse);
+  }
 }

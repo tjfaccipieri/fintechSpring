@@ -1,5 +1,6 @@
 package com.tjfaccipieri.fintechspring.service;
 
+import com.tjfaccipieri.fintechspring.dto.categoria.CategoriaCreateDTO;
 import com.tjfaccipieri.fintechspring.model.Categoria;
 import com.tjfaccipieri.fintechspring.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,9 @@ public class CategoriaService {
     return categoria;
   }
   
-  public Categoria create(Categoria categoria) {
+  public Categoria create(CategoriaCreateDTO categoriaCreateDTO) {
+    Categoria categoria = new Categoria();
+    categoria.setNome(categoriaCreateDTO.nome());
     return repository.save(categoria);
   }
   
