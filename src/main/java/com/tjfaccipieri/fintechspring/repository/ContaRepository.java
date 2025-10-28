@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ContaRepository extends JpaRepository<Conta, Long> {
   List<Conta> findByUsuario(Usuario usuario);
+  List<Conta> findAllByUsuario(Usuario usuario);
 }

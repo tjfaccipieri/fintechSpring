@@ -28,6 +28,11 @@ public class ContaController {
         .map(ResponseEntity::ok)
         .orElse(ResponseEntity.notFound().build());
   }
+
+  @GetMapping("/usuario/{id}")
+  public ResponseEntity<List<Conta>> findAllByUsuarioId(@PathVariable Long id) {
+    return ResponseEntity.ok(service.findAllByUsuarioId(id));
+  }
   
   @PostMapping()
   public ResponseEntity<Conta> create(@RequestBody ContaDTO conta) {

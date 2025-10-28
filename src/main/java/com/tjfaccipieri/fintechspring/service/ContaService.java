@@ -26,6 +26,15 @@ public class ContaService {
     return repository.findAll();
   }
   
+  public List<Conta> findAllByUsuario(Usuario usuario) {
+    return repository.findAllByUsuario(usuario);
+  }
+
+  public List<Conta> findAllByUsuarioId(Long usuarioId) {
+    Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    return findAllByUsuario(usuario);
+  }
+  
   public Optional<Conta> findById(Long id) {
     Optional<Conta> conta = repository.findById(id);
     if(conta.isEmpty()) {
