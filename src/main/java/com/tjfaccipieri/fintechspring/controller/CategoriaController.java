@@ -1,6 +1,7 @@
 package com.tjfaccipieri.fintechspring.controller;
 
 import com.tjfaccipieri.fintechspring.dto.categoria.CategoriaCreateDTO;
+import com.tjfaccipieri.fintechspring.dto.categoria.CategoriaUpdateDTO;
 import com.tjfaccipieri.fintechspring.model.Categoria;
 import com.tjfaccipieri.fintechspring.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class CategoriaController {
   }
   
   @PutMapping()
-  public ResponseEntity<Categoria> update(@RequestBody Categoria categoria) {
-    return ResponseEntity.ok(service.update(categoria));
+  public ResponseEntity<Categoria> update(@RequestBody CategoriaUpdateDTO categoriaUpdateDTO) {
+    return ResponseEntity.ok(service.update(categoriaUpdateDTO));
   }
   
   @DeleteMapping("/{id}")

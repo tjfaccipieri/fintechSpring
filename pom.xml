@@ -61,7 +61,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Swwagger config - Remove latter-->
+        <!-- Swagger config - Remove latter-->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
