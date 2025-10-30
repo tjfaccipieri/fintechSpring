@@ -1,6 +1,6 @@
 package com.tjfaccipieri.fintechspring.controller;
 
-import com.tjfaccipieri.fintechspring.model.Usuario;
+import com.tjfaccipieri.fintechspring.dto.usuario.UsuarioPFResponseDTO;
 import com.tjfaccipieri.fintechspring.model.UsuarioPF;
 import com.tjfaccipieri.fintechspring.service.UsuarioPFService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +8,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/api/usuarios/pf")
 public class UsuarioPFController {
 	@Autowired
 	private UsuarioPFService service;
 
-	//@GetMapping("/{id}")
-	//public UsuarioPF findById(@PathVariable String id) {}
+	@GetMapping("/{id}")
+	public ResponseEntity<UsuarioPFResponseDTO> findById(@PathVariable Long id) {
+		return ResponseEntity.ok(service.findByIdWithContas(id));
+	}
 
 	@PostMapping()
 	public ResponseEntity<UsuarioPF> create(@RequestBody UsuarioPF usuarioPF) {
